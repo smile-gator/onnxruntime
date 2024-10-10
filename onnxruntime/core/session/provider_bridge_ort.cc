@@ -42,6 +42,8 @@
 #include "core/session/onnxruntime_c_api.h"
 #include "core/common/string_helper.h"
 
+#include "onnx/shape_inference/implementation.h"
+
 #ifdef ENABLE_TRAINING
 #ifdef ENABLE_TRAINING_TORCH_INTEROP
 #include "orttraining/training_ops/cpu/torch/torch_custom_function_kernel_base.h"
@@ -812,6 +814,10 @@ struct ProviderHostImpl : ProviderHost {
         break;
     }
     ONNX_NAMESPACE::RegisterSchema(schema, ORT_API_VERSION);
+  }
+
+  void InferShapes(ONNX_NAMESPACE::ModelProto& m) override {
+      return ONNX_NAMESPACE::shape_inference::InferShapes(m);
   }
 
   // ConfigOptions (wrapped)

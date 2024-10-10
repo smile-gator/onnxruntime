@@ -566,6 +566,7 @@ struct ProviderHost {
   virtual ONNX_NAMESPACE::StringStringEntryProto* FunctionProto__add_metadata_props(ONNX_NAMESPACE::FunctionProto* p) = 0;
 
   virtual void RegisterSchema(const std::string& domain, const OrtCustomOp* op, int type) = 0;
+  virtual void InferShapes(ONNX_NAMESPACE::ModelProto& m) = 0;
 
   // ConfigOptions
   virtual std::optional<std::string> ConfigOptions__GetConfigEntry(const ConfigOptions* p, const std::string& config_key) = 0;

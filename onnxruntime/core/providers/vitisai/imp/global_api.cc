@@ -320,6 +320,7 @@ vaip_core::OrtApiForVaip* create_org_api_hook() {
                                              const auto& enter, const auto& leave, const auto& stop) {
     graph.ReverseDFSFrom(from, enter, leave, nullptr, stop);
   };
+   the_global_api.graph_infer_shapes = [](ONNX_NAMESPACE::ModelProto& m) -> auto { return Provider_GetHost()->InferShapes(m); };
   // node
   the_global_api.node_get_inputs_unsafe = vaip::node_get_inputs;
   the_global_api.node_get_output_node_args_unsafe = vaip::node_get_output_node_args;
