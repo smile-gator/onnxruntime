@@ -228,7 +228,13 @@ struct OrtApiForVaip {
   Model* (*create_empty_model)(const std::filesystem::path& path, const std::vector<std::pair<std::string, int64_t>>& opset);  //[91]
   void (*graph_set_inputs)(Graph& graph,
                            gsl::span<const NodeArg* const> inputs);  // [92]
-  void (*graph_infer_shapes)(ONNX_NAMESPACE::ModelProto& m); //[93]
+  void (*graph_infer_shapes_from_filepath)(const std::string& m, const std::string& save_path); //[93]
+  GraphProto* (*graph_to_graph_proto)(const Graph& graph); // [94]
+  void (*graph_proto_delete)(GraphProto* p);   //   [95]
+    ModelProto* (*model_to_proto)(Model& model);                                                                                                        // [96]
+  DllSafe<std::string> (*model_proto_serialize_as_string)(ModelProto& model_proto);                                                                   // [97]
+  void (*model_proto_delete)(ModelProto* p);       
+   void (*graph_infer_shapes)(ModelProto& m);            //    [99]                                                                                       // [98]
 };
 
 #ifndef USE_VITISAI

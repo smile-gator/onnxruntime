@@ -816,6 +816,10 @@ struct ProviderHostImpl : ProviderHost {
     ONNX_NAMESPACE::RegisterSchema(schema, ORT_API_VERSION);
   }
 
+  void InferShapes(const std::string& m, const std::string& save_path) override {
+      return ONNX_NAMESPACE::shape_inference::InferShapes(m, save_path);
+  }
+
   void InferShapes(ONNX_NAMESPACE::ModelProto& m) override {
       return ONNX_NAMESPACE::shape_inference::InferShapes(m);
   }

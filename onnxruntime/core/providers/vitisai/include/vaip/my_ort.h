@@ -21,6 +21,7 @@ namespace ONNX_NAMESPACE {
 struct AttributeProto;
 struct TensorProto;
 struct ModelProto;
+struct GraphProto;
 #ifndef USE_VITISAI
 enum TensorProto_DataType : int {
   TensorProto_DataType_UNDEFINED = 0,
@@ -73,6 +74,7 @@ class GraphHolder;
 using ONNX_NAMESPACE::AttributeProto;
 using ONNX_NAMESPACE::TensorProto;
 using ONNX_NAMESPACE::ModelProto;
+using ONNX_NAMESPACE::GraphProto;
 using onnxruntime::Graph;
 using onnxruntime::GraphViewer;
 using onnxruntime::Model;
