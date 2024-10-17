@@ -147,8 +147,10 @@ std::vector<std::unique_ptr<ComputeCapability>> VitisAIExecutionProvider::GetCap
       restore_backend_compilation_cache(cache_dir, cache_key, ep_ctx_payload, graph_viewer.ModelPath().string());
     } else {
       if (fs::exists(ep_ctx_model_file_loc_) && fs::is_regular_file(ep_ctx_model_file_loc_) && ep_ctx_enabled_) {
-        ORT_THROW("The inference session was created with a normal ONNX model but a model file with EP context cache exists at ",
-                  PathToUTF8String(ep_ctx_model_file_loc_), ". Please remove the EP context model manually if you want to re-generate it.");
+        if (1) {
+          ORT_THROW("The inference session was created with a normal ONNX model but a model file with EP context cache exists at ",
+                    PathToUTF8String(ep_ctx_model_file_loc_), ". Please remove the EP context model manually if you want to re-generate it.");
+        }
         // Disable the flexibility implemented below by throwing an exception.
         // Now the code below is unreachable but DCE will take care of it.
         // We might want to re-enable it in future, so we keep it as is.
